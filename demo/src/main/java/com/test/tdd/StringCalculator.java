@@ -15,6 +15,7 @@ public class StringCalculator {
 
     return Stream.of(nums)
         .map(Integer::parseInt)
+        .filter(n -> n < 1000)
         .reduce(0, Integer::sum);
   }
 
