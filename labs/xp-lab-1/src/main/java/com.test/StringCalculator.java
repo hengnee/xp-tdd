@@ -8,7 +8,7 @@ public class StringCalculator {
     public StringCalculator() {}
 
     public int add(String inputNumbers) {
-        if ("".equals(inputNumbers)) return 0;
+        if (inputNumbers.isEmpty()) return 0;
         List<Integer> numbers = Arrays.stream(inputNumbers.split("[\\n|\\,]"))
                 .map(Integer::parseInt)
                 .collect(Collectors.toList());
@@ -18,7 +18,6 @@ public class StringCalculator {
             throw new IllegalArgumentException("Negative values are not supported: " + negativeNumbers.toString());
         }
 
-        return numbers.stream().filter(n -> n <= 1000)
-                .reduce(0, (subtotal, element) -> subtotal + element);
+        return numbers.stream().filter(n -> n <= 1000).reduce(0, Integer::sum);
     }
 }
