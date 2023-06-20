@@ -8,9 +8,6 @@ public class StringCalculator {
       return 0;
     }
 
-    if (numbers.length() == 1) {
-      return Integer.parseInt(numbers);
-    }
     String[] nums = numbers.split(",");
     return Stream.of(nums)
         .map(Integer::parseInt)
