@@ -34,4 +34,10 @@ public class StringReverserTest {
     should_throw_IllegalArgumentException_when_input_is_null() {
         stringReverser.reverseString(null);
     }
+
+    @Test public void
+    should_return_reversed_string_when_input_is_non_empty_string() {
+        String reversed = stringReverser.reverseString("hello");
+        assertEquals("olleh", reversed);
+    }
 }
