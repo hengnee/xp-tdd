@@ -9,9 +9,10 @@ public class StringCalculatorTest {
   // TODO:
   // DONE The function should return zero when the input numbers is empty
   // DONE should return the same number when length is 1
+  // DONE it can take any amount of numbers and returns the sum.
+  // DONE The numbers are delimited by comma "," for e.g “1,2,3”
 
-  // it can take any amount of numbers and returns the sum.
-  // The numbers are delimited by comma "," and/or new line character "\n”, for e.g “1,2,3” and “1\n2,3” are valid examples.
+  // and/or new line character "\n”,  and “1\n2,3” are valid examples.
   // should throw an exception if there is any negative number,
   // if there are many negative numbers, show them all in the exception message.
 
@@ -36,6 +37,12 @@ public class StringCalculatorTest {
   @Test public void
   should_return_the_sum_of_numbers_seprated_by_comma() {
     int sum = calc.add("1,2,3");
+    assertEquals(6, sum);
+  }
+
+  @Test public void
+  should_return_the_sum_of_numbers_seprated_by_newline_chars_and_comma() {
+    int sum = calc.add("1\n2,3");
     assertEquals(6, sum);
   }
 
