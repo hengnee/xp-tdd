@@ -11,16 +11,20 @@ public class StringCalculator {
     }
     String[] nums = numbers.split(",|\n");
 
-    // validating the input
-    List<Integer> negative = Stream.of(nums)
-        .map(Integer::parseInt)
-        .filter(n -> n < 0).collect(Collectors.toList());
-    if (negative.size() > 0) {
-      throw new IllegalArgumentException("negative number found");
-    }
+    validateInput(nums);
 
     return Stream.of(nums)
         .map(Integer::parseInt)
         .reduce(0, Integer::sum);
+  }
+
+  private static void validateInput(String[] nums) {
+    List<Integer> negative = Stream.of(nums)
+        .map(Integer::parseInt)
+        .filter(n -> n < 0).collect(Collectors.toList());
+
+    if (negative.size() > 0) {
+      throw new IllegalArgumentException("negative number found");
+    }
   }
 }
