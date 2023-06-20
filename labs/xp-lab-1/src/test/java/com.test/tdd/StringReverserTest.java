@@ -10,7 +10,7 @@ public class StringReverserTest {
     // DONE - reverseString("") should return ""
     // DONE - reverseString("a") should return "a"
     // DONE - handle null
-    // reverseString("hello") should return "olleh"
+    // DONE - reverseString("hello") should return "olleh"
     // reverseString("1234567890") should return "0987654321"
     StringReverser stringReverser;
     @Before
@@ -39,5 +39,7 @@ public class StringReverserTest {
     should_return_reversed_string_when_input_is_non_empty_string() {
         String reversed = stringReverser.reverseString("hello");
         assertEquals("olleh", reversed);
+        String reversedSpecialChar = stringReverser.reverseString("!@#$%^&*()-=");
+        assertEquals("=-)(*&^%$#@!", reversedSpecialChar);
     }
 }
