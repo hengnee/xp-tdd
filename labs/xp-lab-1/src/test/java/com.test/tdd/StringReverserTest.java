@@ -1,7 +1,7 @@
 package com.test.tdd;
 
 import org.junit.Test;
-
+import com.test.StringReverser;
 import static org.junit.Assert.*;
 
 public class StringReverserTest {
