@@ -1,5 +1,7 @@
 package com.test.tdd;
 
+import java.util.stream.Stream;
+
 public class StringCalculator {
   public int add(String numbers) {
     if (numbers.length() == 0) {
@@ -9,11 +11,9 @@ public class StringCalculator {
     if (numbers.length() == 1) {
       return Integer.parseInt(numbers);
     }
-    int sum = 0;
     String[] nums = numbers.split(",");
-    for(String n: nums) {
-      sum = sum + Integer.parseInt(n);
-    }
-    return sum;
+    return Stream.of(nums)
+        .map(Integer::parseInt)
+        .reduce(0, Integer::sum);
   }
 }
