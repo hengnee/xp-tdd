@@ -8,7 +8,7 @@ import static org.junit.Assert.assertEquals;
 public class StringCalculatorTest {
   // TODO:
   // DONE The function should return zero when the input numbers is empty
-  // should return the same number when length is 1
+  // DONE should return the same number when length is 1
 
   // it can take any amount of numbers and returns the sum.
   // The numbers are delimited by comma "," and/or new line character "\n”, for e.g “1,2,3” and “1\n2,3” are valid examples.
@@ -31,6 +31,12 @@ public class StringCalculatorTest {
   should_return_same_number_when_input_length_is_one() {
     int sum = calc.add("5");
     assertEquals(5, sum);
+  }
+
+  @Test public void
+  should_return_the_sum_of_numbers_seprated_by_comma() {
+    int sum = calc.add("1,2,3");
+    assertEquals(6, sum);
   }
 
 
