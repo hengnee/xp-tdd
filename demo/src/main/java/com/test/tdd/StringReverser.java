@@ -5,6 +5,6 @@ public class StringReverser {
     if (str == null) {
       throw new IllegalArgumentException("input should not be null");
     }
-    return str;
+    return new StringBuilder(str).reverse().toString();
   }
 }
