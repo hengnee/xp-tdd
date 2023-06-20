@@ -5,6 +5,9 @@ public class StringReverser {
     public StringReverser() {}
 
     public String reverseString(String input) {
+        if (input == null) {
+            throw new IllegalArgumentException();
+        }
         return input;
     }
 }
