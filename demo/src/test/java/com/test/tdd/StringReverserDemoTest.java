@@ -3,6 +3,9 @@ package com.test.tdd;
 import org.junit.Before;
 import org.junit.Test;
 
+import java.util.Arrays;
+import java.util.stream.Stream;
+
 import static org.junit.Assert.assertEquals;
 
 public class StringReverserDemoTest {
@@ -20,12 +23,12 @@ public class StringReverserDemoTest {
   // DONE reverseString("a") should return "a"
   // DONE handle null
   // DONE reverseString("hello") should return "olleh"
-
-  // reverseString("1234567890") should return "0987654321"
+  // DONE reverseString("1234567890") should return "0987654321"
 
   @Test public void
   should_return_empty_string_when_input_is_empty() {
     String str = reverser.reverseString("");
+
     assertEquals("", str);
   }
 
