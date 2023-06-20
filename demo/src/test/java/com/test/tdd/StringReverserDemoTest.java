@@ -19,7 +19,7 @@ public class StringReverserDemoTest {
   // DONE reverseString("") should return ""
   // DONE reverseString("a") should return "a"
   // DONE handle null
-  // reverseString("hello") should return "olleh"
+  // DONE reverseString("hello") should return "olleh"
 
   // reverseString("1234567890") should return "0987654321"
 
@@ -45,6 +45,8 @@ public class StringReverserDemoTest {
   should_reverse_the_string() {
     String str = reverser.reverseString("hello");         // Act
     assertEquals("olleh", str);
+    str = reverser.reverseString("1234567890");         // Act
+    assertEquals("0987654321", str);
   }
 
 }
