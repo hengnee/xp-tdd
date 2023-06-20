@@ -24,7 +24,10 @@ public class StringCalculator {
         .filter(n -> n < 0).collect(Collectors.toList());
 
     if (negative.size() > 0) {
-      throw new IllegalArgumentException("negative number found");
+      if (negative.size() == 1) {
+        throw new IllegalArgumentException("negative number found");
+      }
+      throw new IllegalArgumentException("multiple negative numbers found. " + negative.toString());
     }
   }
 }
