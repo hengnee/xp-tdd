@@ -8,13 +8,13 @@ import static org.junit.Assert.*;
 public class StringReverserTest {
     // TODO:
     // DONE - reverseString("") should return ""
-    // reverseString("a") should return "a"
-    // handle null
+    // DONE - reverseString("a") should return "a"
+    // DONE - handle null
     // reverseString("hello") should return "olleh"
     // reverseString("1234567890") should return "0987654321"
     StringReverser stringReverser;
     @Before
-    void setup() {
+    public void setup() {
         stringReverser = new StringReverser();
     }
 
@@ -30,9 +30,8 @@ public class StringReverserTest {
         assertEquals("a", reversed);
     }
 
-    @Test public void
-    should_return_null_when_input_is_null() {
-        String reversed = stringReverser.reverseString(null);
-        assertEquals(null, reversed);
+    @Test(expected = IllegalArgumentException.class) public void
+    should_throw_IllegalArgumentException_when_input_is_null() {
+        stringReverser.reverseString(null);
     }
 }
