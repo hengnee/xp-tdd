@@ -5,6 +5,6 @@ public class StringReverser {
     public StringReverser() {}
 
     public String reverseString(String input) {
-        return "";
+        return input;
     }
 }
