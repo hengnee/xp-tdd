@@ -17,11 +17,11 @@ public class StringReverserDemoTest {
 
   // TODO:
   // DONE reverseString("") should return ""
-  // reverseString("a") should return "a"
-
+  // DONE reverseString("a") should return "a"
+  // DONE handle null
   // reverseString("hello") should return "olleh"
+
   // reverseString("1234567890") should return "0987654321"
-  // handle null
 
   @Test public void
   should_return_empty_string_when_input_is_empty() {
@@ -33,7 +33,12 @@ public class StringReverserDemoTest {
   should_return_the_same_character_when_length_of_string_is_one() {
     // AAA format
     String str = reverser.reverseString("a");         // Act
-
-    assertEquals("a", str);                   //Assert
+    assertEquals("a", str);                  // Assert
   }
+
+  @Test(expected = IllegalArgumentException.class) public void
+  should_thrown_IllegalArgumentException_exception_when_input_is_null() {
+    String str = reverser.reverseString(null);         // Act
+  }
+
 }
