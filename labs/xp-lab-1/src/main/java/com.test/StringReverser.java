@@ -8,6 +8,6 @@ public class StringReverser {
         if (input == null) {
             throw new IllegalArgumentException();
         }
-        return input;
+        return new StringBuilder(input).reverse().toString();
     }
 }
