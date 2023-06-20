@@ -1,11 +1,11 @@
 package com.test.tdd;
 
+import org.junit.Before;
 import org.junit.Test;
 
 import static org.junit.Assert.assertEquals;
 
 public class StringCalculatorTest {
-
   // TODO:
   // DONE The function should return zero when the input numbers is empty
   // should return the same number when length is 1
@@ -15,16 +15,20 @@ public class StringCalculatorTest {
   // should throw an exception if there is any negative number,
   // if there are many negative numbers, show them all in the exception message.
 
+  private StringCalculator calc;
+  @Before
+  public void setup() {
+    calc = new StringCalculator();
+  }
+
   @Test public void
   should_return_zero_when_input_is_empty() {
-    StringCalculator calc = new StringCalculator();
     int sum = calc.add("");
     assertEquals(0, sum);
   }
 
   @Test public void
   should_return_same_number_when_input_length_is_one() {
-    StringCalculator calc = new StringCalculator();
     int sum = calc.add("5");
     assertEquals(5, sum);
   }
