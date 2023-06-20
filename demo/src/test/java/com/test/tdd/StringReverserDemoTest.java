@@ -41,4 +41,10 @@ public class StringReverserDemoTest {
     String str = reverser.reverseString(null);         // Act
   }
 
+  @Test public void
+  should_reverse_the_string() {
+    String str = reverser.reverseString("hello");         // Act
+    assertEquals("olleh", str);
+  }
+
 }
