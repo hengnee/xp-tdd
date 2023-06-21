@@ -25,13 +25,7 @@ public class Contact {
   }
 
   public boolean validate() {
-    if (firstname.isBlank()) {
-      return false;
-    }
-    if (lastname.isBlank()) {
-      return false;
-    }
-    if (phone.isBlank()) {
+    if (firstname.isBlank() || lastname.isBlank() || phone.isBlank()) {
       return false;
     }
     return true;
