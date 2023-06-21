@@ -28,6 +28,6 @@ public class Contact {
     if (firstname.isBlank()) {
       return false;
     }
-    return true;
+    return false;
   }
 }
