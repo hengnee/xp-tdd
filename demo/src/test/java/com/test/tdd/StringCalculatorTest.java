@@ -74,4 +74,11 @@ public class StringCalculatorTest {
     assertEquals(3, sum);
   }
 
+  @Test public void
+  should_return_zero__when_not_between_9AM_and_6PM() {
+    StringCalculator calculator = new StringCalculator(null);
+    int sum = calculator.add("1,2,3");
+    assertEquals(0, sum);
+  }
+
 }
