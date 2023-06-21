@@ -13,14 +13,14 @@ public class Contact {
   }
 
   public String getFirstName() {
-    return null;
+    return firstname;
   }
 
   public String getLastName() {
-    return null;
+    return lastname;
   }
 
   public String getPhoneNumber() {
-    return null;
+    return phone;
   }
 }
