@@ -24,15 +24,22 @@ public class ContactTest {
   }
 
   @Test public void
-  should_validate_firstname_not_be_blank() {
+  should_validate_firstname_not_blank() {
     Contact contact = new Contact("", "lastname", "phone");
     boolean isValid = contact.validate();
     assertFalse(isValid);
   }
 
   @Test public void
-  should_validate_lastname_not_be_blank() {
+  should_validate_lastname_not_blank() {
     Contact contact = new Contact("firstname", "", "phone");
+    boolean isValid = contact.validate();
+    assertFalse(isValid);
+  }
+
+  @Test public void
+  should_validate_phone_not_blank() {
+    Contact contact = new Contact("firstname", "lastname", "");
     boolean isValid = contact.validate();
     assertFalse(isValid);
   }
