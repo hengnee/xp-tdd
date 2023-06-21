@@ -3,15 +3,18 @@ package com.test.tdd;
 public class NumberGuesser {
 
   private final int target;
+  private int attempts;
 
   public NumberGuesser(int target) {
     this.target = target;
+    this.attempts = 0;
   }
 
   public GuessResult makeGuess(int guessedNumber) {
+    this.attempts++;
     if(this.target < guessedNumber) {
-      return new GuessResult(true);
+      return new GuessResult(true, attempts);
     }
-    return new GuessResult(false);
+    return new GuessResult(false, attempts);
   }
 }

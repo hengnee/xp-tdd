@@ -2,10 +2,12 @@ package com.test.tdd;
 
 public class GuessResult {
   private final boolean isHigh;
+  private final int attempts;
 
-  public GuessResult(boolean isHigh) {
+  public GuessResult(boolean isHigh, int attempts) {
 
     this.isHigh = isHigh;
+    this.attempts = attempts;
   }
 
   public boolean isHigh() {
@@ -13,6 +15,6 @@ public class GuessResult {
   }
 
   public int getAttempts() {
-    return 0;
+    return attempts;
   }
 }
