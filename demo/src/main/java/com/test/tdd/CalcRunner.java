@@ -3,7 +3,9 @@ package com.test.tdd;
 public class CalcRunner {
 
   public static void main(String[] args) {
-    StringCalculator calculator = new StringCalculator(new SystemClock());
+    SystemClock systemClock = new SystemClock(); //dependency
+    StringCalculator calculator = new StringCalculator(systemClock); // dependency wiring
+
     int sum = calculator.add("1,2,3");
     System.out.println("Sum is: "+ sum);
   }

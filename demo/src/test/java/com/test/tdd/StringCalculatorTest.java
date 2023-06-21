@@ -90,7 +90,7 @@ public class StringCalculatorTest {
         return LocalTime.of(8, 0);
       }
     };
-    StringCalculator calculator = new StringCalculator(clock);
+    StringCalculator calculator = new StringCalculator(clock); // wiring
     int sum = calculator.add("1,2,3");
     assertEquals(0, sum);
   }
