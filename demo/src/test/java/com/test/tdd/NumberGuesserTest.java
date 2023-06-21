@@ -11,7 +11,7 @@ public class NumberGuesserTest {
   NumberGuesser guesser;
   @Before
   public void setup() {
-    guesser = new NumberGuesser();
+    guesser = new NumberGuesser(10);
   }
 
   @Test public void
@@ -25,4 +25,5 @@ public class NumberGuesserTest {
     boolean isHigh = guesser.makeGuess(10, 9);
     assertFalse(isHigh);
   }
+
 }
