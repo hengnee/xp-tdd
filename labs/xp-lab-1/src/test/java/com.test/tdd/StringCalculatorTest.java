@@ -5,6 +5,9 @@ import org.junit.Test;
 import static org.junit.Assert.*;
 import com.test.StringCalculator;
 
+import java.time.Clock;
+import java.time.LocalDateTime;
+
 public class StringCalculatorTest {
     // 1. DONE - should return 0 when input numbers is empty
     // 5. DONE - should throw IllegalArgumentException when there is any negative number
@@ -17,7 +20,7 @@ public class StringCalculatorTest {
     StringCalculator stringCalculator;
     @Before
     public void setup() {
-        stringCalculator = new StringCalculator();
+        stringCalculator = new StringCalculator(null);
     }
 
     @Test public void
@@ -56,5 +59,10 @@ public class StringCalculatorTest {
         } catch(IllegalArgumentException ex) {
             assertEquals("Negative values are not supported: [-2, -4]", ex.getMessage());
         }
+    }
+
+    @Test(expected = RuntimeException.class) public void
+    should_throw_runtimeexception_when_out_of_time_between_9am_and_6pm() {
+        stringCalculator.add("1");
     }
 }

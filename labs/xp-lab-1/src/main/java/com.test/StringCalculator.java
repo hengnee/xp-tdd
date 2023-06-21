@@ -1,11 +1,15 @@
 package com.test;
 
+import com.test.Clock;
 import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
 
 public class StringCalculator {
-    public StringCalculator() {}
+    private final Clock clock;
+    public StringCalculator(Clock clock) {
+        this.clock = clock;
+    }
 
     public int add(String inputNumbers) {
         if (inputNumbers.isEmpty()) return 0;
