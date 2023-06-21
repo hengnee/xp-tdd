@@ -30,5 +30,12 @@ public class ContactTest {
     assertFalse(isValid);
   }
 
+  @Test public void
+  should_validate_lastname_not_be_blank() {
+    Contact contact = new Contact("firstname", "", "phone");
+    boolean isValid = contact.validate();
+    assertFalse(isValid);
+  }
+
 
 }

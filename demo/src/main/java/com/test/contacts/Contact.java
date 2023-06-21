@@ -25,6 +25,9 @@ public class Contact {
   }
 
   public boolean validate() {
-    return false;
+    if (firstname.isBlank()) {
+      return false;
+    }
+    return true;
   }
 }
