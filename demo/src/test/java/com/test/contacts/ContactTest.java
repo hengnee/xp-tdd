@@ -10,7 +10,7 @@ public class ContactTest {
   // DONE first name is blank.
   //- DONE last name is blank.
   //- DONE phone number is blank.
-  // validate should return true when firstname, lastname and phonenumber is not blank
+  // DONE validate should return true when firstname, lastname and phonenumber is not blank
   //- length is not 10.
   //- contains other than digits.
   //- does not start with 0
