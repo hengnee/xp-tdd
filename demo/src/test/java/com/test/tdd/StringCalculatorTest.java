@@ -25,13 +25,7 @@ public class StringCalculatorTest {
   private StringCalculator calc;
   @Before
   public void setup() {
-    Clock clock = new Clock() {
-      @Override
-      public LocalTime getCurrentTime() {
-        return LocalTime.of(9, 10);
-      }
-    };
-    calc = new StringCalculator(clock);
+    calc = new StringCalculator(() -> LocalTime.of(9, 10));
   }
 
   @Test public void
@@ -84,13 +78,7 @@ public class StringCalculatorTest {
 
   @Test public void
   should_return_zero__when_not_between_9AM_and_6PM() {
-    Clock clock = new Clock() {
-      @Override
-      public LocalTime getCurrentTime() {
-        return LocalTime.of(8, 0);
-      }
-    };
-    StringCalculator calculator = new StringCalculator(clock); // wiring
+    StringCalculator calculator = new StringCalculator(() -> LocalTime.of(8, 0)); // wiring
     int sum = calculator.add("1,2,3");
     assertEquals(0, sum);
   }
