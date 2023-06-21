@@ -1,12 +1,14 @@
 package com.test.tdd;
 
+import com.test.Clock;
+import com.test.ClockImpl;
 import org.junit.Before;
 import org.junit.Test;
 import static org.junit.Assert.*;
 import com.test.StringCalculator;
 
-import java.time.Clock;
-import java.time.LocalDateTime;
+import java.time.DateTimeException;
+import java.time.LocalTime;
 
 public class StringCalculatorTest {
     // 1. DONE - should return 0 when input numbers is empty
@@ -18,9 +20,15 @@ public class StringCalculatorTest {
     // 3. DONE - should return 0 when input number is bigger than 1000
     // 4. DONE - should return sum of numbers between 0 and 1000 when input numbers are positive
     StringCalculator stringCalculator;
+    Clock clockMock;
     @Before
     public void setup() {
-        stringCalculator = new StringCalculator(null);
+        clockMock = new ClockImpl() {
+            public LocalTime getCurrentTime() {
+                return LocalTime.of(10,0);
+            }
+        };
+        stringCalculator = new StringCalculator(clockMock);
     }
 
     @Test public void
@@ -61,8 +69,24 @@ public class StringCalculatorTest {
         }
     }
 
-    @Test(expected = RuntimeException.class) public void
+    @Test(expected = DateTimeException.class) public void
     should_throw_runtimeexception_when_out_of_time_between_9am_and_6pm() {
+        clockMock = new ClockImpl() {
+            public LocalTime getCurrentTime() {
+                return LocalTime.of(8,0);
+            }
+        };
+        stringCalculator = new StringCalculator(clockMock);
+        stringCalculator.add("1");
+    }
+    @Test public void
+    should_run_add_when_within_time_between_9am_and_6pm() {
+        clockMock = new ClockImpl() {
+            public LocalTime getCurrentTime() {
+                return LocalTime.of(10,0);
+            }
+        };
+        stringCalculator = new StringCalculator(clockMock);
         stringCalculator.add("1");
     }
 }

@@ -1,6 +1,7 @@
 package com.test;
 
-import com.test.Clock;
+import java.time.DateTimeException;
+import java.time.LocalTime;
 import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -12,6 +13,10 @@ public class StringCalculator {
     }
 
     public int add(String inputNumbers) {
+        LocalTime now = clock.getCurrentTime();
+        if (now.isBefore(LocalTime.of(9, 0)) || now.isAfter(LocalTime.of(18, 0))) {
+            throw new DateTimeException("Only allowed to run between 9am - 6pm");
+        }
         if (inputNumbers.isEmpty()) return 0;
         List<Integer> numbers = Arrays.stream(inputNumbers.split("[\\n|\\,]"))
                 .map(Integer::parseInt)
