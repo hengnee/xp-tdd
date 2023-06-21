@@ -31,6 +31,6 @@ public class Contact {
     if (lastname.isBlank()) {
       return false;
     }
-    return true;
+    return false;
   }
 }
