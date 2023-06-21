@@ -16,13 +16,13 @@ public class NumberGuesserTest {
 
   @Test public void
   should_be_able_to_tell_if_the_number_is_higher() {
-    boolean isHigh = guesser.makeGuess(10, 11);
+    boolean isHigh = guesser.makeGuess(11);
     assertTrue(isHigh);
   }
 
   @Test public void
   should_be_able_to_tell_if_the_number_is_lower() {
-    boolean isHigh = guesser.makeGuess(10, 9);
+    boolean isHigh = guesser.makeGuess(9);
     assertFalse(isHigh);
   }
 

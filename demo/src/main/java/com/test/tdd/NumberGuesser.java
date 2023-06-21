@@ -8,7 +8,7 @@ public class NumberGuesser {
     this.target = target;
   }
 
-  public boolean makeGuess(int target, int guessedNumber) {
+  public boolean makeGuess(int guessedNumber) {
     return this.target < guessedNumber;
   }
 }
