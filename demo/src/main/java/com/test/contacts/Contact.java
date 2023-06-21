@@ -23,4 +23,8 @@ public class Contact {
   public String getPhoneNumber() {
     return phone;
   }
+
+  public boolean validate() {
+    return true;
+  }
 }
