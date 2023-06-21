@@ -9,6 +9,9 @@ public class NumberGuesser {
   }
 
   public boolean makeGuess(int guessedNumber) {
-    return this.target < guessedNumber;
+    if(this.target < guessedNumber) {
+      return new GuessResult(true).isHigh();
+    }
+    return new GuessResult(false).isHigh();
   }
 }
