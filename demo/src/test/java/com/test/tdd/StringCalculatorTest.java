@@ -33,9 +33,15 @@ public class StringCalculatorTest {
   }
 
   @Test public void
-  should_return_same_number_when_input_length_is_one() {
+  should_return_same_number_when_input_is_positive_number_below_1001() {
     int sum = calc.add("5");
     assertEquals(5, sum);
+  }
+
+  @Test public void
+  should_return_zero_when_input_length_is_one_and_greater_than_1000() {
+    int sum = calc.add("2000");
+    assertEquals(0, sum);
   }
 
   @Test public void
