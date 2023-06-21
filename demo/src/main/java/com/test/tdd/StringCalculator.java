@@ -5,6 +5,13 @@ import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 public class StringCalculator {
+
+  private final Clock clock;
+
+  public StringCalculator(Clock clock) {
+    this.clock = clock;
+  }
+
   public int add(String numbers) {
     if (numbers.length() == 0) {
       return 0;

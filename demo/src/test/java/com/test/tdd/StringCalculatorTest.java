@@ -23,7 +23,7 @@ public class StringCalculatorTest {
   private StringCalculator calc;
   @Before
   public void setup() {
-    calc = new StringCalculator();
+    calc = new StringCalculator(null);
   }
 
   @Test public void
