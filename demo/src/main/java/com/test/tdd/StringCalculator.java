@@ -15,11 +15,7 @@ public class StringCalculator {
 
   public int add(String numbers) {
 
-    LocalTime current = clock.getCurrentTime();
-    LocalTime start = LocalTime.of(9, 0);
-    LocalTime end = LocalTime.of(18, 0);
-
-    if (!current.isBefore(start) && !current.isAfter(end)) {
+    if (isBetween9AMand6PM()) {
       if (numbers.length() == 0) {
         return 0;
       }
@@ -33,6 +29,14 @@ public class StringCalculator {
           .reduce(0, Integer::sum);
     }
     return 0;
+  }
+
+  private boolean isBetween9AMand6PM() {
+    LocalTime current = clock.getCurrentTime();
+    LocalTime start = LocalTime.of(9, 0);
+    LocalTime end = LocalTime.of(18, 0);
+
+    return  !current.isBefore(start) && !current.isAfter(end);
   }
 
   private static void validateInput(String[] nums) {
