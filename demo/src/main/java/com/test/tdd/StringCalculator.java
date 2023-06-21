@@ -1,5 +1,6 @@
 package com.test.tdd;
 
+import java.time.LocalTime;
 import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
@@ -13,17 +14,25 @@ public class StringCalculator {
   }
 
   public int add(String numbers) {
-    if (numbers.length() == 0) {
-      return 0;
+
+    LocalTime current = clock.getCurrentTime();
+    LocalTime start = LocalTime.of(9, 0);
+    LocalTime end = LocalTime.of(18, 0);
+
+    if (!current.isBefore(start) && !current.isAfter(end)) {
+      if (numbers.length() == 0) {
+        return 0;
+      }
+      String[] nums = numbers.split(",|\n");
+
+      validateInput(nums);
+
+      return Stream.of(nums)
+          .map(Integer::parseInt)
+          .filter(n -> n < 1000)
+          .reduce(0, Integer::sum);
     }
-    String[] nums = numbers.split(",|\n");
-
-    validateInput(nums);
-
-    return Stream.of(nums)
-        .map(Integer::parseInt)
-        .filter(n -> n < 1000)
-        .reduce(0, Integer::sum);
+    return 0;
   }
 
   private static void validateInput(String[] nums) {
