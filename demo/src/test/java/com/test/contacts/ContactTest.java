@@ -2,25 +2,24 @@ package com.test.contacts;
 
 import org.junit.Test;
 
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.*;
 
 public class ContactTest {
 
   // TODO:
-  // first name is blank.
-  //- last name is blank.
-  //- phone number is blank.
+  // DONE first name is blank.
+  //- DONE last name is blank.
+  //- DONE phone number is blank.
+  // validate should return true when firstname, lastname and phonenumber is not blank
   //- length is not 10.
   //- contains other than digits.
   //- does not start with 0
 
   @Test public void
-  should_be_able_to_create_a_contact_with_firstname_lastname_phone() {
+  should_be_a_valid_contact_when_firstname_lastname_phonenumber_not_blank() {
     Contact contact = new Contact("firstname", "lastname", "phone");
-    assertEquals("firstname", contact.getFirstName());
-    assertEquals("lastname", contact.getLastName());
-    assertEquals("phone", contact.getPhoneNumber());
+    boolean isValid = contact.validate();
+    assertTrue(isValid);
   }
 
   @Test public void
