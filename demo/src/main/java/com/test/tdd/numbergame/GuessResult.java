@@ -1,4 +1,4 @@
-package com.test.tdd;
+package com.test.tdd.numbergame;
 
 public class GuessResult {
   private final boolean isHigh;

@@ -1,4 +1,4 @@
-package com.test.tdd;
+package com.test.tdd.numbergame;
 
 import org.junit.Before;
 import org.junit.Test;

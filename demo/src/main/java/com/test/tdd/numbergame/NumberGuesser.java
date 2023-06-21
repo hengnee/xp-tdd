@@ -1,4 +1,6 @@
-package com.test.tdd;
+package com.test.tdd.numbergame;
+
+import com.test.tdd.numbergame.GuessResult;
 
 public class NumberGuesser {
 
