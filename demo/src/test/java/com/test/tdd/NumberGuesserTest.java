@@ -3,8 +3,7 @@ package com.test.tdd;
 import org.junit.Before;
 import org.junit.Test;
 
-import static org.junit.Assert.assertFalse;
-import static org.junit.Assert.assertTrue;
+import static org.junit.Assert.*;
 
 public class NumberGuesserTest {
 
@@ -16,14 +15,22 @@ public class NumberGuesserTest {
 
   @Test public void
   should_be_able_to_tell_if_the_number_is_higher() {
-    boolean isHigh = guesser.makeGuess(11);
-    assertTrue(isHigh);
+    GuessResult result = guesser.makeGuess(11);
+    assertTrue(result.isHigh());
   }
 
   @Test public void
   should_be_able_to_tell_if_the_number_is_lower() {
-    boolean isHigh = guesser.makeGuess(9);
-    assertFalse(isHigh);
+    GuessResult result = guesser.makeGuess(9);
+    assertFalse(result.isHigh());
+  }
+
+  @Test public void
+  should_be_able_to_tell_the_number_of_attempts() {
+    guesser.makeGuess(9);
+    guesser.makeGuess(19);
+    GuessResult result = guesser.makeGuess(19);
+    assertEquals(3, result.getAttempts());
   }
 
 }

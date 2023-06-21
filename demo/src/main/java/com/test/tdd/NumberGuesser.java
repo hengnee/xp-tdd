@@ -8,10 +8,10 @@ public class NumberGuesser {
     this.target = target;
   }
 
-  public boolean makeGuess(int guessedNumber) {
+  public GuessResult makeGuess(int guessedNumber) {
     if(this.target < guessedNumber) {
-      return new GuessResult(true).isHigh();
+      return new GuessResult(true);
     }
-    return new GuessResult(false).isHigh();
+    return new GuessResult(false);
   }
 }

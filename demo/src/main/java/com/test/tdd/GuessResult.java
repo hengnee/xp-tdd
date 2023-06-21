@@ -11,4 +11,8 @@ public class GuessResult {
   public boolean isHigh() {
     return isHigh;
   }
+
+  public int getAttempts() {
+    return 0;
+  }
 }
