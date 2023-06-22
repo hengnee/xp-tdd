@@ -4,13 +4,17 @@ import org.junit.Before;
 import org.junit.Rule;
 import org.junit.Test;
 import org.junit.rules.ExpectedException;
+import org.junit.runner.RunWith;
+import org.mockito.InjectMocks;
+import org.mockito.Mock;
+import org.mockito.runners.MockitoJUnitRunner;
 
 import java.time.LocalTime;
 
 import static org.junit.Assert.assertEquals;
-import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
 
+@RunWith(MockitoJUnitRunner.class)
 public class StringCalculatorTest {
   // TODO:
   // DONE The function should return zero when the input numbers is empty
@@ -24,13 +28,15 @@ public class StringCalculatorTest {
   @Rule
   public ExpectedException expectedException = ExpectedException.none();
 
+  @InjectMocks
   private StringCalculator calc;
-  Clock clock = mock(Clock.class);
+
+  @Mock
+  private Clock clock;
 
   @Before
   public void setup() {
     when(clock.getCurrentTime()).thenReturn(LocalTime.of(9, 10));
-    calc = new StringCalculator(clock);
   }
 
   @Test public void
@@ -85,8 +91,7 @@ public class StringCalculatorTest {
   should_return_zero__when_not_between_9AM_and_6PM() {
     when(clock.getCurrentTime()).thenReturn(LocalTime.of(8, 0));
 
-    StringCalculator calculator = new StringCalculator(clock); // wiring
-    int sum = calculator.add("1,2,3");
+    int sum = calc.add("1,2,3");
     assertEquals(0, sum);
   }
 
