@@ -100,4 +100,10 @@ public class StringCalculatorTest {
         stringCalculator.add("1,2,3");
         verify(remoteApi, times(1)).publish(6);
     }
+
+    @Test(expected = IllegalArgumentException.class) public void
+    should_not_publish_value_to_remote_api_if_no_summation() {
+        stringCalculator.add("-1,2,3");
+        verify(remoteApi, never()).publish(anyInt());
+    }
 }
