@@ -12,8 +12,7 @@ import org.mockito.runners.MockitoJUnitRunner;
 import java.time.LocalTime;
 
 import static org.junit.Assert.assertEquals;
-import static org.mockito.Mockito.verify;
-import static org.mockito.Mockito.when;
+import static org.mockito.Mockito.*;
 
 @RunWith(MockitoJUnitRunner.class)
 public class StringCalculatorTest {
@@ -106,7 +105,7 @@ public class StringCalculatorTest {
   should_publish_to_remote_api_when_the_sum_is_calculated() {
 
     int sum = calc.add("1,2,3");
-    verify(api).publish(6); // assertion
+    verify(api).publish(sum); // assertion
   }
 }
 
