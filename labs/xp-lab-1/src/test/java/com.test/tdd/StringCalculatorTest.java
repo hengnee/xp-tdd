@@ -97,8 +97,8 @@ public class StringCalculatorTest {
 
     @Test public void
     should_publish_value_to_remote_api_after_sum() {
-        stringCalculator.add("1,2,3");
-        verify(remoteApi, times(1)).publish(6);
+        int sum = stringCalculator.add("1,2,3");
+        verify(remoteApi, times(1)).publish(sum);
     }
 
     @Test(expected = IllegalArgumentException.class) public void
