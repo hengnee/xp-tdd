@@ -12,6 +12,7 @@ import org.mockito.runners.MockitoJUnitRunner;
 import java.time.LocalTime;
 
 import static org.junit.Assert.assertEquals;
+import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
 @RunWith(MockitoJUnitRunner.class)
@@ -24,7 +25,10 @@ public class StringCalculatorTest {
   // DONE and/or new line character "\n”,  and “1\n2,3” are valid examples.
   // DONE should throw an exception if there is any negative number,
   // DONE if there are many negative numbers, show them all in the exception message.
-  // Numbers bigger than 1000 should be ignored, so adding 2 + 1001 = 2
+  // DONE Numbers bigger than 1000 should be ignored, so adding 2 + 1001 = 2
+
+  // After calculating the sum, String calculator should publish it to a remote API.
+  // void RemoteApi.publish(sum);
   @Rule
   public ExpectedException expectedException = ExpectedException.none();
 
@@ -33,6 +37,9 @@ public class StringCalculatorTest {
 
   @Mock
   private Clock clock;
+
+  @Mock
+  private RemoteApi api;
 
   @Before
   public void setup() {
@@ -95,4 +102,14 @@ public class StringCalculatorTest {
     assertEquals(0, sum);
   }
 
+  @Test public void
+  should_publish_to_remote_api_when_the_sum_is_calculated() {
+
+    int sum = calc.add("1,2,3");
+    verify(api).publish(6); // assertion
+  }
 }
+
+
+
+

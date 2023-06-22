@@ -8,12 +8,16 @@ import java.util.stream.Stream;
 public class StringCalculator {
 
   private final Clock clock;
+  private final RemoteApi api;
 
-  public StringCalculator(Clock clock) {
+  public StringCalculator(Clock clock, RemoteApi api) {
     this.clock = clock;
+    this.api = api;
   }
 
   public int add(String numbers) {
+
+//    RemoteApi api = new RemoteApi(); // hardwired dependency, cannot be changed/replaced at run time. Bad
 
     if (isBetween9AMand6PM()) {
       if (numbers.length() == 0) {
@@ -23,10 +27,13 @@ public class StringCalculator {
 
       validateInput(nums);
 
-      return Stream.of(nums)
+      // api.publish(sum);
+      Integer sum = Stream.of(nums)
           .map(Integer::parseInt)
           .filter(n -> n < 1000)
           .reduce(0, Integer::sum);
+      this.api.publish(sum);
+      return sum;
     }
     return 0;
   }
