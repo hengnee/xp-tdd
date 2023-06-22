@@ -8,8 +8,10 @@ import java.util.stream.Collectors;
 
 public class StringCalculator {
     private final Clock clock;
-    public StringCalculator(Clock clock) {
+    private final RemoteApi remoteApi;
+    public StringCalculator(Clock clock, RemoteApi remoteApi) {
         this.clock = clock;
+        this.remoteApi = remoteApi;
     }
 
     public int add(String inputNumbers) {
@@ -27,6 +29,9 @@ public class StringCalculator {
             throw new IllegalArgumentException("Negative values are not supported: " + negativeNumbers.toString());
         }
 
-        return numbers.stream().filter(n -> n <= 1000).reduce(0, Integer::sum);
+        int summation = numbers.stream().filter(n -> n <= 1000).reduce(0, Integer::sum);
+        remoteApi.publish(summation);
+
+        return summation;
     }
 }

@@ -86,13 +86,12 @@ public class StringCalculatorTest {
     @Test(expected = DateTimeException.class) public void
     should_throw_runtimeexception_when_out_of_time_between_9am_and_6pm() {
         when(clockMock.getCurrentTime()).thenReturn(LocalTime.of(8, 0));
-        stringCalculator = new StringCalculator(clockMock);
         stringCalculator.add("1");
     }
 
     @Test public void
     should_run_add_when_within_time_between_9am_and_6pm() {
-        stringCalculator = new StringCalculator(clockMock);
+        when(clockMock.getCurrentTime()).thenReturn(LocalTime.of(12, 0));
         stringCalculator.add("1");
     }
 
