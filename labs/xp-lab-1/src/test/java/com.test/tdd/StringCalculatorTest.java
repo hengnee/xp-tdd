@@ -1,6 +1,7 @@
 package com.test.tdd;
 
 import com.test.Clock;
+import com.test.RemoteApi;
 import com.test.StringCalculator;
 import org.junit.Before;
 import org.junit.Rule;
@@ -15,7 +16,7 @@ import java.time.DateTimeException;
 import java.time.LocalTime;
 
 import static org.junit.Assert.assertEquals;
-import static org.mockito.Mockito.when;
+import static org.mockito.Mockito.*;
 
 @RunWith(MockitoJUnitRunner.class)  // include this for the Mockito annotation
 public class StringCalculatorTest {
@@ -31,6 +32,8 @@ public class StringCalculatorTest {
     public ExpectedException expectedException = ExpectedException.none();
     @Mock
     Clock clockMock;
+    @Mock
+    RemoteApi remoteApi;
     @InjectMocks
     StringCalculator stringCalculator;
 
@@ -91,5 +94,11 @@ public class StringCalculatorTest {
     should_run_add_when_within_time_between_9am_and_6pm() {
         stringCalculator = new StringCalculator(clockMock);
         stringCalculator.add("1");
+    }
+
+    @Test public void
+    should_publish_value_to_remote_api_after_sum() {
+        stringCalculator.add("1,2,3");
+        verify(remoteApi, times(1)).publish(6);
     }
 }
