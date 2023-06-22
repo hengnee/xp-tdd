@@ -4,31 +4,31 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
-import org.mockito.junit.MockitoJUnitRunner;
+import org.mockito.runners.MockitoJUnitRunner;
 
-import java.util.Arrays;
 import java.util.List;
 
 import static org.junit.Assert.*;
-import static org.mockito.Mockito.*;
+import static org.mockito.Mockito.when;
 
 @RunWith(MockitoJUnitRunner.class)
 public class CustomerServiceTest {
+    // should_be_able_to_get_list_of_customer_by_city_when_input_city_is_found
+    // should return NullPointerException when input city is null
+    // should return empty customer when input city is empty
+    // should return empty when repository is empty
+    @Mock
+    Repository repository;
+    @InjectMocks
+    CustomerService customerService;
 
-  @InjectMocks
-  CustomerService service;
+    @Test public void
+    should_be_able_to_get_list_of_customer_by_city_when_input_city_is_found() {
+        String inputCity = "Singapore";
+        List<Customer> customers = List.of(new Customer("0", "my name", "Singapore"));
+        when(repository.findAll()).thenReturn(customers);
+        List<Customer> foundCustomers = customerService.getCustomersByCity(inputCity);
+        assertArrayEquals(customers.toArray(), foundCustomers.toArray());
+    }
 
-  @Mock
-  Repository repository;
-
-  @Test public void
-  should_return_customers_by_city() {
-
-    when(repository.findAll()).thenReturn(Arrays.asList(
-        new Customer("1", "Fake name", "Fake city")));
-
-    List<Customer> customers = service.getCustomersByCity("Fake city");
-
-    verify(repository, times(1)).findAll();
-  }
 }

@@ -5,7 +5,7 @@ import java.util.List;
 public class CustomerTester {
 
   public static void main(String[] args) {
-    CustomerService service = new CustomerService(new DbRepository());
+    CustomerService service = new CustomerService(null);
 
     List<Customer> customers = service.getCustomersByCity("New Delhi");
 
