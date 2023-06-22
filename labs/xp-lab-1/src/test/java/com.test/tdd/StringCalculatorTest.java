@@ -1,18 +1,23 @@
 package com.test.tdd;
 
 import com.test.Clock;
-import com.test.ClockImpl;
-import org.junit.Before;
-import org.junit.Test;
-import static org.junit.Assert.*;
-import static org.mockito.Mockito.mock;
-import static org.mockito.Mockito.when;
-
 import com.test.StringCalculator;
+import org.junit.Before;
+import org.junit.Rule;
+import org.junit.Test;
+import org.junit.rules.ExpectedException;
+import org.junit.runner.RunWith;
+import org.mockito.InjectMocks;
+import org.mockito.Mock;
+import org.mockito.runners.MockitoJUnitRunner;
 
 import java.time.DateTimeException;
 import java.time.LocalTime;
 
+import static org.junit.Assert.assertEquals;
+import static org.mockito.Mockito.when;
+
+@RunWith(MockitoJUnitRunner.class)  // include this for the Mockito annotation
 public class StringCalculatorTest {
     // 1. DONE - should return 0 when input numbers is empty
     // 5. DONE - should throw IllegalArgumentException when there is any negative number
@@ -22,13 +27,16 @@ public class StringCalculatorTest {
     // 2. DONE - should return same number when input only contains 1 number
     // 3. DONE - should return 0 when input number is bigger than 1000
     // 4. DONE - should return sum of numbers between 0 and 1000 when input numbers are positive
-    StringCalculator stringCalculator;
+    @Rule
+    public ExpectedException expectedException = ExpectedException.none();
+    @Mock
     Clock clockMock;
+    @InjectMocks
+    StringCalculator stringCalculator;
+
     @Before
     public void setup() {
-        clockMock = mock(Clock.class);
         when(clockMock.getCurrentTime()).thenReturn(LocalTime.of(10, 0));
-        stringCalculator = new StringCalculator(clockMock);
     }
 
     @Test public void
@@ -62,11 +70,14 @@ public class StringCalculatorTest {
 
     @Test public void
     should_show_all_negative_numbers_in_IllegalArgumentException_when_there_are_multiple_negative_values() {
-        try {
-            stringCalculator.add("1,-2,3\n-4");
-        } catch(IllegalArgumentException ex) {
-            assertEquals("Negative values are not supported: [-2, -4]", ex.getMessage());
-        }
+        expectedException.expect(IllegalArgumentException.class);
+        expectedException.expectMessage("Negative values are not supported: [-2, -4]");
+        stringCalculator.add("1,-2,3\n-4");
+//        try {
+//            stringCalculator.add("1,-2,3\n-4");
+//        } catch(IllegalArgumentException ex) {
+//            assertEquals("Negative values are not supported: [-2, -4]", ex.getMessage());
+//        }
     }
 
     @Test(expected = DateTimeException.class) public void
