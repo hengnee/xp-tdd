@@ -3,9 +3,10 @@ package customer;
 import java.util.Arrays;
 import java.util.List;
 
-public class DbRepository {
+public class DbRepository implements Repository {
 
   // Assume this data is getting fetched from the Database and the database will not be available while testing
+  @Override
   public List<Customer> findAll() {
     return Arrays.asList(
       new Customer("1", "Ashish", "New Delhi"),
