@@ -8,6 +8,8 @@ import org.junit.rules.ExpectedException;
 import java.time.LocalTime;
 
 import static org.junit.Assert.assertEquals;
+import static org.mockito.Mockito.mock;
+import static org.mockito.Mockito.when;
 
 public class StringCalculatorTest {
   // TODO:
@@ -23,9 +25,12 @@ public class StringCalculatorTest {
   public ExpectedException expectedException = ExpectedException.none();
 
   private StringCalculator calc;
+  Clock clock = mock(Clock.class);
+
   @Before
   public void setup() {
-    calc = new StringCalculator(() -> LocalTime.of(9, 10));
+    when(clock.getCurrentTime()).thenReturn(LocalTime.of(9, 10));
+    calc = new StringCalculator(clock);
   }
 
   @Test public void
@@ -78,7 +83,9 @@ public class StringCalculatorTest {
 
   @Test public void
   should_return_zero__when_not_between_9AM_and_6PM() {
-    StringCalculator calculator = new StringCalculator(() -> LocalTime.of(8, 0)); // wiring
+    when(clock.getCurrentTime()).thenReturn(LocalTime.of(8, 0));
+
+    StringCalculator calculator = new StringCalculator(clock); // wiring
     int sum = calculator.add("1,2,3");
     assertEquals(0, sum);
   }
