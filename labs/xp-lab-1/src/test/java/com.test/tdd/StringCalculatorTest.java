@@ -5,6 +5,9 @@ import com.test.ClockImpl;
 import org.junit.Before;
 import org.junit.Test;
 import static org.junit.Assert.*;
+import static org.mockito.Mockito.mock;
+import static org.mockito.Mockito.when;
+
 import com.test.StringCalculator;
 
 import java.time.DateTimeException;
@@ -23,11 +26,8 @@ public class StringCalculatorTest {
     Clock clockMock;
     @Before
     public void setup() {
-        clockMock = new ClockImpl() {
-            public LocalTime getCurrentTime() {
-                return LocalTime.of(10,0);
-            }
-        };
+        clockMock = mock(Clock.class);
+        when(clockMock.getCurrentTime()).thenReturn(LocalTime.of(10, 0));
         stringCalculator = new StringCalculator(clockMock);
     }
 
@@ -71,21 +71,13 @@ public class StringCalculatorTest {
 
     @Test(expected = DateTimeException.class) public void
     should_throw_runtimeexception_when_out_of_time_between_9am_and_6pm() {
-        clockMock = new ClockImpl() {
-            public LocalTime getCurrentTime() {
-                return LocalTime.of(8,0);
-            }
-        };
+        when(clockMock.getCurrentTime()).thenReturn(LocalTime.of(8, 0));
         stringCalculator = new StringCalculator(clockMock);
         stringCalculator.add("1");
     }
+
     @Test public void
     should_run_add_when_within_time_between_9am_and_6pm() {
-        clockMock = new ClockImpl() {
-            public LocalTime getCurrentTime() {
-                return LocalTime.of(10,0);
-            }
-        };
         stringCalculator = new StringCalculator(clockMock);
         stringCalculator.add("1");
     }
